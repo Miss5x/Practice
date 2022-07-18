@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Controllers
 {
-    [Route("/api/[controller]")]
-    public class HomeController : Controller
+    [Route("/api/[controller]")] // адрес запроса
+    public class HomeController : Controller 
     {
-        [HttpPost()]
+        [HttpPost()] // POST запрос из тела которого берутся параметры для метода Set
         public IActionResult Set([FromBody] InputDataModel inputData)
         {
-            OutputDataModel outputData = new OutputDataModel();
-            outputData.kod = Generetion.GetKod(inputData.lenght_kod);
-            outputData.salt = Generetion.GetSalt(inputData.lenght_salt);
-            outputData.hash = Generetion.GetSHA1(outputData.kod, outputData.salt);
-            return Ok(outputData);
+            OutputDataModel outputData = new OutputDataModel(); // создаем экземпляр InputDataModel
+            outputData.kod = Generetion.GetKod(inputData.lenght_kod); // вызов генерации кода
+            outputData.salt = Generetion.GetSalt(inputData.lenght_salt); // вызов генерации соли
+            outputData.hash = Generetion.GetSHA1(outputData.kod, outputData.salt); // хеширование
+            return Ok(outputData); // возвращаем обьект класса InputDataModel
         }    
     }
 }

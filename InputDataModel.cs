@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication
 {
-    public class InputDataModel
+    public class InputDataModel // модель входных данных для привязки
     {
         [Required]
         public int lenght_kod { get; set; }
